@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 const Login = ({ login, showLogoutMessage = false }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -10,7 +9,6 @@ const Login = ({ login, showLogoutMessage = false }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [logoutMessage, setLogoutMessage] = useState(showLogoutMessage);
-
   useEffect(() => {
     if (showLogoutMessage) {
       setLogoutMessage(true);
@@ -18,21 +16,16 @@ const Login = ({ login, showLogoutMessage = false }) => {
       const timer = setTimeout(() => {
         setLogoutMessage(false);
       }, 3000);
-      
       return () => clearTimeout(timer);
     }
   }, [showLogoutMessage]);
-
   const { email, password } = formData;
-
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
-
   const onSubmit = async e => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setLogoutMessage(false);
-    
     try {
       const res = await axios.post('/api/auth/login', formData);
       login(res.data.token);
@@ -42,7 +35,6 @@ const Login = ({ login, showLogoutMessage = false }) => {
       setLoading(false);
     }
   };
-
   return (
     <div className="form-container">
       {logoutMessage && (
@@ -51,7 +43,6 @@ const Login = ({ login, showLogoutMessage = false }) => {
           <p>You have been successfully logged out of your account.</p>
         </div>
       )}
-      
       <h2>Login</h2>
       <form onSubmit={onSubmit}>
         <div className="form-group">
@@ -85,5 +76,4 @@ const Login = ({ login, showLogoutMessage = false }) => {
     </div>
   );
 };
-
 export default Login;

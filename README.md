@@ -149,3 +149,37 @@ BMR = 88.362 + (13.397 × weight in kg) + (4.799 × height in cm) - (5.677 × ag
 
 - **Female**:  
 BMR = 447.593 + (9.247 × weight in kg) + (3.098 × height in cm) - (4.330 × age in years)
+
+
+---
+
+## ☁️ Deployment
+
+### 🚀 Heroku (Backend)
+```bash
+heroku login
+heroku create your-app-name
+heroku config:set MONGODB_URI=...
+heroku config:set JWT_SECRET=...
+heroku config:set JWT_EXPIRES_IN=90d
+git push heroku main
+```
+
+### 🌐 Netlify (Frontend)
+
+```bash
+npm run build
+```
+
+- Deploy the `/build` folder → **Netlify**
+
+---
+
+## 🔑 Environment Variables
+
+| Variable         | Description                     |
+|------------------|---------------------------------|
+| `MONGODB_URI`    | MongoDB Atlas connection string |
+| `JWT_SECRET`     | JWT signing secret              |
+| `JWT_EXPIRES_IN` | Expiry (e.g., `90d`)            |
+| `NODE_ENV`       | Set to `production` in prod     |

@@ -103,3 +103,39 @@ npm run build
 cd ../backend
 npm start
 ```
+
+## 📡 API Endpoints
+
+### 🔑 Authentication
+- **POST** `/api/auth/register` → Register new user  
+- **POST** `/api/auth/login` → Login user  
+
+---
+
+### 🍴 Meals
+- **POST** `/api/log_meals` → Log a meal  
+- **GET** `/api/meals?date=YYYY-MM-DD` → Fetch meals for date  
+- **GET** `/api/status/:userId?date=YYYY-MM-DD` → Nutrition summary  
+
+---
+
+### 👤 Profile
+- **GET** `/api/profile` → Get profile  
+- **PATCH** `/api/profile` → Update profile  
+- **PATCH** `/api/change-password` → Change password  
+
+---
+
+### 📲 Webhook
+- **POST** `/api/webhook` → Simulate WhatsApp meal logging  
+
+---
+
+## 🥗 Food Database
+Example nutrition values:
+```json
+{
+  "Jeera Rice": {"calories": 250, "protein": 5, "carbs": 45, "fiber": 2},
+  "Dal": {"calories": 180, "protein": 12, "carbs": 20, "fiber": 5},
+  "Cucumber": {"calories": 16, "protein": 1, "carbs": 4, "fiber": 1}
+}

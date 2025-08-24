@@ -1,8 +1,6 @@
-// frontend/src/components/Profile.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import BackButton from './BackButton';
-
 const Profile = ({bmr}) => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -32,10 +30,7 @@ const Profile = ({bmr}) => {
       const res = await axios.get('/api/profile');
       const userData = res.data.data.user;
       setUser(userData);
-      
-      // Format date for input field (YYYY-MM-DD)
       const dob = userData.dateOfBirth ? new Date(userData.dateOfBirth).toISOString().split('T')[0] : '';
-      
       setFormData({
         name: userData.name || '',
         email: userData.email || '',

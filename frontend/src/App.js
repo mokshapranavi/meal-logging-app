@@ -1,4 +1,3 @@
-// frontend/src/App.js
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
@@ -12,19 +11,14 @@ import WebhookSimulator from './components/WebhookSimulator';
 import Profile from './components/Profile';
 import BmrDisplay from './components/BmrDisplay';
 import './App.css';
-
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [bmr, setBmr] = useState(null);
-
-  // Function to calculate BMR
   const calculateBMR = (userData) => {
     if (!userData) return null;
-    
     const { gender, weight, height } = userData;
-    // Calculate age from date of birth
     let age = 0;
     if (userData.dateOfBirth) {
       const today = new Date();
@@ -35,7 +29,6 @@ function App() {
         age--;
       }
     }
-    
     if (gender && weight && height && age) {
       if (gender.toLowerCase() === 'male') {
         return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
@@ -45,7 +38,6 @@ function App() {
     }
     return null;
   };
-
   useEffect(() => {
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -53,20 +45,15 @@ function App() {
       fetchUser();
     }
   }, [token]);
-
   const fetchUser = async () => {
     try {
-      // Get user data from the backend
       const res = await axios.get('/api/profile');
       const userData = res.data.data.user;
       setUser(userData);
-      
-      // Calculate BMR
       const userBMR = calculateBMR(userData);
       setBmr(userBMR);
     } catch (err) {
       console.error('Error fetching user:', err);
-      // If API call fails, try to get user data from token
       if (token) {
         try {
           const base64Url = token.split('.')[1];
@@ -74,11 +61,8 @@ function App() {
           const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
           }).join(''));
-          
           const userData = JSON.parse(jsonPayload);
           setUser(userData);
-          
-          // Calculate BMR from token data
           const userBMR = calculateBMR(userData);
           setBmr(userBMR);
         } catch (error) {
@@ -88,13 +72,11 @@ function App() {
       }
     }
   };
-
   const login = (token) => {
     localStorage.setItem('token', token);
     setToken(token);
     setIsAuthenticated(true);
   };
-
   const logout = () => {
     localStorage.removeItem('token');
     setToken(null);
@@ -104,7 +86,6 @@ function App() {
     delete axios.defaults.headers.common['Authorization'];
     window.location.href = '/login';
   };
-
   return (
     <Router>
       <div className="App">
@@ -119,7 +100,6 @@ function App() {
             )}
           </div>
         </header>
-        
         <Switch>
           <Route exact path="/">
             {isAuthenticated ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
@@ -163,5 +143,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

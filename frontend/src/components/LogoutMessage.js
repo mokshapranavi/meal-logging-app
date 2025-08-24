@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
 const LogoutMessage = () => {
   useEffect(() => {
-    // Clear the logout message after 3 seconds
     const timer = setTimeout(() => {
-      // This will be handled by the parent component
     }, 3000);
-    
     return () => clearTimeout(timer);
   }, []);
-
   return (
     <div className="form-container">
       <div className="success-message">
@@ -23,5 +18,4 @@ const LogoutMessage = () => {
     </div>
   );
 };
-
 export default LogoutMessage;

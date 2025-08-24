@@ -6,13 +6,11 @@ const WebhookSimulator = ({bmr}) => {
   const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
   const onSubmit = async e => {
     e.preventDefault();
     setLoading(true);
     setError('');
     setResponse('');
-    
     try {
       const res = await axios.post('/api/webhook', { message });
       setResponse(JSON.stringify(res.data, null, 2));
@@ -22,7 +20,6 @@ const WebhookSimulator = ({bmr}) => {
       setLoading(false);
     }
   };
-
   return (
     <div>
       {bmr && (
@@ -65,5 +62,4 @@ const WebhookSimulator = ({bmr}) => {
     </div>
   );
 };
-
 export default WebhookSimulator;

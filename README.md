@@ -75,8 +75,11 @@ npm install
 
 ### 4. MongoDB Setup
 Create a free MongoDB Atlas account
+
 Create a cluster & user (read/write access)
+
 Whitelist IP (or use 0.0.0.0/0 for dev)
+
 Copy connection string → paste in .env
 
 ## ▶️Running the Application
@@ -90,6 +93,7 @@ npm run dev
 npm start
 ```
 Frontend: http://localhost:3000
+
 Backend API: http://localhost:5000
 
 ### Production Mode

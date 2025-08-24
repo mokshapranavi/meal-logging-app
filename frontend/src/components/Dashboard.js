@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Dashboard = ({bmr}) => {
   return (
     <div className="dashboard">
@@ -21,19 +20,16 @@ const Dashboard = ({bmr}) => {
           <p>Record what you've eaten</p>
           <Link to="/log-meal" className="dashboard-link">Go to Meal Log</Link>
         </div>
-        
         <div className="dashboard-card">
           <h3>Meal History</h3>
           <p>View your past meals</p>
           <Link to="/meal-history" className="dashboard-link">View History</Link>
         </div>
-        
         <div className="dashboard-card">
           <h3>Nutrition Status</h3>
           <p>Check your nutrition intake</p>
           <Link to="/nutrition-status" className="dashboard-link">View Status</Link>
         </div>
-        
         <div className="dashboard-card">
           <h3>Webhook Simulator</h3>
           <p>Test message-based logging</p>
@@ -48,5 +44,4 @@ const Dashboard = ({bmr}) => {
     </div>
   );
 };
-
 export default Dashboard;

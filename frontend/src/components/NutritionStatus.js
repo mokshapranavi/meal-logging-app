@@ -7,7 +7,6 @@ const NutritionStatus = ({bmr}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Get the user ID from the token
   const getUserIdFromToken = () => {
     const token = localStorage.getItem('token');
     if (token) {

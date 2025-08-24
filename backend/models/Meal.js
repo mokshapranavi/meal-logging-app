@@ -39,7 +39,6 @@ const mealSchema = new mongoose.Schema({
 });
 
 mealSchema.pre('save', function(next) {
-  // Calculate nutrition based on foodItems
   this.nutrition = this.foodItems.reduce((acc, item) => {
     const foodData = foodDb[item] || { calories: 0, protein: 0, carbs: 0, fiber: 0 };
     acc.calories += foodData.calories;

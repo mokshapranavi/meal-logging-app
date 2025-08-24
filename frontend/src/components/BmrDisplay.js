@@ -1,9 +1,6 @@
-// frontend/src/components/BmrDisplay.js
 import React from 'react';
-
 const BmrDisplay = ({ bmr }) => {
   if (!bmr) return null;
-
   return (
     <div className="bmr-display">
       <span className="bmr-label">Your BMR: </span>
@@ -11,5 +8,4 @@ const BmrDisplay = ({ bmr }) => {
     </div>
   );
 };
-
 export default BmrDisplay;

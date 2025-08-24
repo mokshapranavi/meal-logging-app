@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const foodDb = {
   "Jeera Rice": { calories: 250, protein: 5, carbs: 45, fiber: 2 },
   "Dal": { calories: 180, protein: 12, carbs: 20, fiber: 5 },
@@ -8,14 +7,12 @@ const foodDb = {
   "Chicken Curry": { calories: 350, protein: 30, carbs: 10, fiber: 2 },
   "Salad": { calories: 50, protein: 2, carbs: 8, fiber: 3 }
 };
-
 const nutritionSchema = new mongoose.Schema({
   calories: Number,
   protein: Number,
   carbs: Number,
   fiber: Number
 });
-
 const mealSchema = new mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -37,7 +34,6 @@ const mealSchema = new mongoose.Schema({
     default: Date.now
   }
 });
-
 mealSchema.pre('save', function(next) {
   this.nutrition = this.foodItems.reduce((acc, item) => {
     const foodData = foodDb[item] || { calories: 0, protein: 0, carbs: 0, fiber: 0 };
@@ -47,8 +43,6 @@ mealSchema.pre('save', function(next) {
     acc.fiber += foodData.fiber;
     return acc;
   }, { calories: 0, protein: 0, carbs: 0, fiber: 0 });
-  
   next();
 });
-
 module.exports = mongoose.model('Meal', mealSchema);

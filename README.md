@@ -52,3 +52,50 @@ Before running the app, ensure you have:
 ```bash
 git clone https://github.com/your-username/meal-logging-app.git
 cd meal-logging-app
+```
+### 2. Backend Setup
+```bash
+cd backend
+npm install
+touch .env
+```
+Add the following to .env:
+```env
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_super_secret_jwt_key
+JWT_EXPIRES_IN=90d
+PORT=5000
+```
+
+### 3. Frontend Setup
+```bash
+cd ../frontend
+npm install
+```
+
+### 4. MongoDB Setup
+Create a free MongoDB Atlas account
+Create a cluster & user (read/write access)
+Whitelist IP (or use 0.0.0.0/0 for dev)
+Copy connection string → paste in .env
+
+## ▶️Running the Application
+
+### Development Mode
+```bash
+# Backend (in backend directory)
+npm run dev
+
+# Frontend (in frontend directory)
+npm start
+```
+Frontend: http://localhost:3000
+Backend API: http://localhost:5000
+
+### Production Mode
+```bash
+cd frontend
+npm run build
+cd ../backend
+npm start
+```

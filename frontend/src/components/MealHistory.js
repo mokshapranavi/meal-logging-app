@@ -6,15 +6,12 @@ const MealHistory = ({bmr}) => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-
   useEffect(() => {
     fetchMeals();
   }, [date]);
-
   const fetchMeals = async () => {
     setLoading(true);
     setError('');
-    
     try {
       const res = await axios.get(`/api/meals?date=${date}`);
       setMeals(res.data.data.meals);
@@ -24,12 +21,10 @@ const MealHistory = ({bmr}) => {
       setLoading(false);
     }
   };
-
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
   return (
     <div>
       {bmr && (
@@ -48,10 +43,8 @@ const MealHistory = ({bmr}) => {
           onChange={e => setDate(e.target.value)}
         />
       </div>
-      
       {loading && <p>Loading meals...</p>}
       {error && <div className="error-message">{error}</div>}
-      
       <div className="meal-list">
         {meals.length === 0 && !loading ? (
           <p>No meals found for this date.</p>
@@ -67,9 +60,7 @@ const MealHistory = ({bmr}) => {
         )}
       </div>
     </div>
-    
     </div>
   );
 };
-
 export default MealHistory;

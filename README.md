@@ -139,3 +139,13 @@ Example nutrition values:
   "Dal": {"calories": 180, "protein": 12, "carbs": 20, "fiber": 5},
   "Cucumber": {"calories": 16, "protein": 1, "carbs": 4, "fiber": 1}
 }
+```
+## 🔬 BMR Calculation
+
+**Mifflin-St Jeor Equation**
+
+- **Male**:  
+BMR = 88.362 + (13.397 × weight in kg) + (4.799 × height in cm) - (5.677 × age in years)
+
+- **Female**:  
+BMR = 447.593 + (9.247 × weight in kg) + (3.098 × height in cm) - (4.330 × age in years)

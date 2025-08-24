@@ -1,13 +1,10 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 const BackButton = () => {
   const history = useHistory();
-
   const handleGoBack = () => {
     history.push('/dashboard');
   };
-
   return (
     <button onClick={handleGoBack} className="back-button">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
@@ -17,5 +14,4 @@ const BackButton = () => {
     </button>
   );
 };
-
 export default BackButton;

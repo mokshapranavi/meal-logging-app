@@ -40,7 +40,6 @@ const MealLog = ({bmr}) => {
     setMessage('');
     
     try {
-      // Filter out empty food items
       const nonEmptyFoodItems = foodItems.filter(item => item.trim() !== '');
       
       if (nonEmptyFoodItems.length === 0) {
